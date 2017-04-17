@@ -10,64 +10,63 @@ The Node class is defined as follows:
      }
 */
 
-    /** This is the version of the function I intially made */
-    boolean checkBST(Node root) {
-	/** An empty tree is also a valid one. */
-        if (root == null) return true;
+/** This is the version of the function I intially made */
+boolean checkBST(Node root) {
+ /** An empty tree is also a valid one. */
+ if (root == null) return true;
 
-        if (root.left != null) {
-	    /** 
-             * If there are any elements in the left subtree 
-             * that contain a bigger value than root's value, this tree is 
-             * not a valid binary search tree.
-             */
-            if (max(root.left) >= root.data) 
-                return false; 
-        }
-        
-        if (root.right != null) {
-	    /** 
-             * Similarly, if there are any elements in the right subtree 
-             * that contain a smaller value than root's value, this tree is 
-             * not a valid binary search tree.
-             */
-            if (root.data >= min(root.right)) 
-                return false; 
-        }
-        
-	/** Recursively check the left and right subtree */
-        return checkBST(root.left) && checkBST(root.right);
-    }
+ if (root.left != null) {
+  /** 
+   * If there are any elements in the left subtree 
+   * that contain a bigger value than root's value, this tree is 
+   * not a valid binary search tree.
+   */
+  if (max(root.left) >= root.data)
+   return false;
+ }
 
-    /** 
-     * Retrieve the most right value, which would be the 
-     * maximum value in this binary tree. 
-     */
-    int max(Node node) {
-        while (node.right != null)
-            node = node.right;   
-        return node.data;
-    }
+ if (root.right != null) {
+  /** 
+   * Similarly, if there are any elements in the right subtree 
+   * that contain a smaller value than root's value, this tree is 
+   * not a valid binary search tree.
+   */
+  if (root.data >= min(root.right))
+   return false;
+ }
 
-    /** 
-     * Retrieve the most left value, which would be the 
-     * minimum value in this binary tree. 
-     */
-    int min(Node node) {        
-        while (node.left != null)
-            node = node.left;
-        return node.data;
-    }
+ /** Recursively check the left and right subtree */
+ return checkBST(root.left) && checkBST(root.right);
+}
 
-   /**************************************************************************/
-   /** A version in the editorial of this quiz */
+/** 
+ * Retrieve the most right value, which would be the 
+ * maximum value in this binary tree. 
+ */
+int max(Node node) {
+ while (node.right != null)
+  node = node.right;
+ return node.data;
+}
 
-   boolean checkBST(Node root, int min, int max) {
-        if (root == null) return true;
-        if (root.data < min || root.data > max) return false;
-        return checkBST(root.left, min, root.data - 1) && checkBST(root.right, root.data + 1, max);
-    }
+/** 
+ * Retrieve the most left value, which would be the 
+ * minimum value in this binary tree. 
+ */
+int min(Node node) {
+ while (node.left != null)
+  node = node.left;
+ return node.data;
+}
 
-    boolean checkBST(Node root) {
-        return checkBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-    }
+/**************************************************************************/
+/** A version in the editorial of this quiz */
+boolean checkBST(Node root, int min, int max) {
+ if (root == null) return true;
+ if (root.data < min || root.data > max) return false;
+ return checkBST(root.left, min, root.data - 1) && checkBST(root.right, root.data + 1, max);
+}
+
+boolean checkBST(Node root) {
+ return checkBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+}
