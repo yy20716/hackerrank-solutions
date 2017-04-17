@@ -4,6 +4,8 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
+/** Quiz URL: https://www.hackerrank.com/challenges/ctci-making-anagrams */
+
 public class Solution {
  
  /** This method computes the 'diff' of the given strings: first and second */
